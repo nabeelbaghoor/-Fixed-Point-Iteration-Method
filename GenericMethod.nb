@@ -1,0 +1,431 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14814,        423]
+NotebookOptionsPosition[     13911,        399]
+NotebookOutlinePosition[     14413,        417]
+CellTagsIndexPosition[     14370,        414]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "done", "*)"}], "\[IndentingNewLine]", 
+  StyleBox[
+   RowBox[{"(*", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"NOTE", ":", "\[IndentingNewLine]", 
+      RowBox[{
+      "This", " ", "Method", " ", "prgramatically", " ", "calculates", " ", 
+       "initial", " ", "root"}]}], ",", 
+     StyleBox[
+      RowBox[{" ", " "}]], 
+     StyleBox[
+      RowBox[{" ", " "}]], 
+     StyleBox[
+      RowBox[{" ", " "}]], 
+     StyleBox[
+      RowBox[{" ", " "}]], " ", 
+     RowBox[{
+     "finds", " ", "itertive", " ", "formula", " ", "and", " ", "prints", " ",
+       "the", " ", "approximate", " ", 
+      RowBox[{"root", ".", "\[IndentingNewLine]", "It"}], " ", "inputs", " ", 
+      "for", " ", "f", 
+      RowBox[{"(", "x", ")"}], " ", "and", " ", "accuracy", " ", 
+      RowBox[{"only", "."}]}]}], "\[IndentingNewLine]", "*)"}],
+   FontSize->18], 
+  StyleBox["\[IndentingNewLine]",
+   FontSize->18], 
+  StyleBox["\[IndentingNewLine]",
+   FontSize->18], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Clear", "[", "\"\<`*\>\"", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"decimalPlaces", "=", 
+     RowBox[{
+     "Input", "[", 
+      "\"\<Enter number of Decimal places to which acccuracy is \
+required!\>\"", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"accuracy", "=", "1"}], ";"}], "\n", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"i", "=", "0"}], ",", 
+     RowBox[{"i", "<", "decimalPlaces"}], ",", 
+     RowBox[{"i", "++"}], ",", 
+     RowBox[{
+      RowBox[{"accuracy", "=", 
+       RowBox[{"N", "[", 
+        RowBox[{"accuracy", "/", "10"}], "]"}]}], ";"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   StyleBox[
+    RowBox[{"(*", 
+     RowBox[{
+     "get", " ", "Function", " ", "as", " ", "input", " ", "from", " ", 
+      "User"}], "*)"}],
+    FontSize->16,
+    FontWeight->"Bold"], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "x_", "]"}], ":=", " ", 
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+      "Input", "[", 
+       "\"\<Enter the Function(in Mathematica Notebook Format)!\>\"", "]"}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<f(x) = \>\"", ",", 
+      RowBox[{"f", "[", "x", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"initialRoot", "=", "0"}], ";"}], "\[IndentingNewLine]", "\n", 
+   StyleBox[
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+       "finding", " ", "intital", " ", "root", " ", "for", " ", "f", " ", 
+        "in", " ", "x"}], "=", "0"}], ",", "1", ",", "2", ",", "..."}], "*)"}],
+    FontSize->16], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"y0", "=", 
+     RowBox[{"f", "[", "0", "]"}]}], ";", 
+    RowBox[{"y1", "=", 
+     RowBox[{"f", "[", "1", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "2"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Negative", "[", 
+         RowBox[{"y0", " ", "y1"}], "]"}], "\[Equal]", "False"}], "&&", 
+       RowBox[{"i", "<", "100000"}]}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{
+       RowBox[{"y0", "=", "y1"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"y1", "=", 
+        RowBox[{"f", "[", "i", "]"}]}]}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Abs", "[", "y0", "]"}], "<", 
+       RowBox[{"Abs", "[", "y1", "]"}]}], ",", 
+      RowBox[{"initialRoot", "=", 
+       RowBox[{"i", "-", "2"}]}], ",", 
+      RowBox[{"initialRoot", "=", 
+       RowBox[{"i", "-", "1"}]}]}], "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+   StyleBox[
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+       "finding", " ", "intital", " ", "root", " ", "for", " ", "f", " ", 
+        "in", " ", "x"}], "=", "0"}], ",", 
+      RowBox[{"-", "1"}], ",", 
+      RowBox[{"-", "2"}], ",", "...", ",", 
+      RowBox[{
+       RowBox[{
+       "In", " ", "case", " ", "intital", " ", "root", " ", "not", " ", 
+        "found", " ", "in", " ", "x"}], "=", "0"}], ",", "1", ",", "2", ",", 
+      RowBox[{"...", "."}]}], "*)"}],
+    FontSize->16], "\[IndentingNewLine]", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Negative", "[", 
+       RowBox[{"y0", " ", "y1"}], "]"}], "\[Equal]", "False"}], ",", 
+     RowBox[{
+      RowBox[{"y0", "=", 
+       RowBox[{"f", "[", "0", "]"}]}], ";", 
+      RowBox[{"y1", "=", 
+       RowBox[{"f", "[", 
+        RowBox[{"-", "1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "2"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Negative", "[", 
+           RowBox[{"y0", " ", "y1"}], "]"}], "\[Equal]", "False"}], "&&", 
+         RowBox[{"i", "<", "100000"}]}], ",", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{
+         RowBox[{"y0", "=", "y1"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"y1", "=", 
+          RowBox[{"f", "[", 
+           RowBox[{"-", "i"}], "]"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Abs", "[", "y0", "]"}], "<", 
+         RowBox[{"Abs", "[", "y1", "]"}]}], ",", 
+        RowBox[{"initialRoot", "=", 
+         RowBox[{"-", 
+          RowBox[{"(", 
+           RowBox[{"i", "-", "2"}], ")"}]}]}], ",", 
+        RowBox[{"initialRoot", "=", 
+         RowBox[{"-", 
+          RowBox[{"(", 
+           RowBox[{"i", "-", "1"}], ")"}]}]}]}], "]"}], ";"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   StyleBox[
+    RowBox[{"(*", 
+     RowBox[{"inital", " ", "Root", " ", "found"}], "*)"}],
+    FontSize->16], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Initial Root = \>\"", ",", "initialRoot"}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   StyleBox[
+    RowBox[{"(*", 
+     RowBox[{"Finding", " ", "Iterative", " ", "Formula"}], "*)"}],
+    FontSize->16], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"expressionString", "=", 
+     RowBox[{"ToString", "[", 
+      RowBox[{
+       RowBox[{"f", "[", "x", "]"}], ",", "InputForm"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"toBeReplaced", " ", "=", " ", "\"\<x\>\""}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"replacedWith", " ", "=", "\"\<y\>\""}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"solutions", " ", ":=", " ", "\[IndentingNewLine]", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"ToExpression", "[", 
+         RowBox[{"#", ",", "InputForm"}], "]"}], "&"}], ",", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringReplacePart", "[", 
+           RowBox[{"expressionString", ",", "replacedWith", ",", "#"}], "]"}],
+           "&"}], ",", 
+         RowBox[{"StringPosition", "[", 
+          RowBox[{"expressionString", ",", "toBeReplaced"}], "]"}]}], "]"}]}],
+       "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"valForGx", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"For", "[", 
+    RowBox[{
+     RowBox[{"i", "=", "1"}], ",", 
+     RowBox[{"i", " ", "<=", 
+      RowBox[{"Length", "[", "solutions", "]"}]}], ",", 
+     RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"sols", " ", "=", " ", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"solutions", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", "0"}], ",", "y", ",", 
+         "Reals"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"k", "=", "1"}], ",", 
+        RowBox[{"k", " ", "<=", 
+         RowBox[{"Length", "[", "sols", "]"}]}], ",", 
+        RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"f", "[", "x_", "]"}], " ", "=", " ", 
+          RowBox[{"ToRadicals", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"sols", "[", 
+              RowBox[{"[", "k", "]"}], "]"}], "/.", 
+             RowBox[{
+              RowBox[{"Rule", "[", 
+               RowBox[{"_", ",", "p_"}], "]"}], "\[RuleDelayed]", "p"}]}], "/.", 
+            RowBox[{
+             RowBox[{"ConditionalExpression", "[", 
+              RowBox[{"e_", ",", "_"}], "]"}], "\[RuleDelayed]", 
+             RowBox[{"ConditionalExpression", "[", 
+              RowBox[{"e", ",", "True"}], "]"}]}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"val", " ", "=", " ", 
+          RowBox[{"Abs", "[", 
+           RowBox[{"First", "[", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"f", "'"}], "[", "initialRoot", "]"}], "]"}], "]"}], 
+           "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"val", " ", "<", " ", "1"}], " ", "&&", 
+            RowBox[{"val", " ", "<", " ", "valForGx"}]}], " ", ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"valForGx", " ", "=", " ", "val"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"g", "[", "x_", "]"}], " ", ":=", " ", 
+             RowBox[{"f", "[", "x", "]"}]}], ";"}]}], "\[IndentingNewLine]", 
+          "]"}]}]}], "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"valForGx", " ", "\[Equal]", " ", "1"}], ",", 
+      RowBox[{
+       RowBox[{"Print", "[", "\"\<The Method is Divergent\>\"", "]"}], ";", 
+       RowBox[{"Exit", "[", "]"}]}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Iterative Formula = \>\"", ",", 
+      RowBox[{"g", "[", "x", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   StyleBox[
+    RowBox[{"(*", 
+     RowBox[{
+     "using", " ", "iterative", " ", "Formula", " ", "to", " ", "find", " ", 
+      "approximate", " ", "Root"}], "*)"}],
+    FontSize->16], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"x0", "=", 
+     RowBox[{"First", "[", 
+      RowBox[{"N", "[", 
+       RowBox[{"g", "[", "initialRoot", "]"}], "]"}], "]"}]}], ";", 
+    RowBox[{"x1", "=", 
+     RowBox[{"First", "[", 
+      RowBox[{"N", "[", 
+       RowBox[{"g", "[", "x0", "]"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Abs", "[", 
+        RowBox[{"x0", "-", "x1"}], "]"}], ">", "accuracy"}], ",", 
+      RowBox[{
+       RowBox[{"x0", "=", "x1"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"x1", "=", 
+        RowBox[{"First", "[", 
+         RowBox[{"N", "[", 
+          RowBox[{"g", "[", "x1", "]"}], "]"}], "]"}]}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+    "\"\<The Approximate Root upto to Required accuracy is: \>\"", ",", 
+     RowBox[{"N", "[", "x1", "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.816355810213937*^9, 
+  3.816355987305917*^9}},ExpressionUUID->"d9c5b160-a94c-4103-8846-\
+c474bf3bfd5b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"f(x) = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"1", "-", 
+    RowBox[{"9", " ", "x"}], "+", 
+    SuperscriptBox["x", "3"]}]}],
+  SequenceForm["f(x) = ", 1 - 9 $CellContext`x + $CellContext`x^3],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.816355392031397*^9},
+ CellLabel->
+  "(Debug) During evaluation of \
+In[24]:=",ExpressionUUID->"81c6a2d2-e7ac-4df1-8ad2-fc6e595e035b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Initial Root = \"\>", "\[InvisibleSpace]", "0"}],
+  SequenceForm["Initial Root = ", 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.81635539204226*^9},
+ CellLabel->
+  "(Debug) During evaluation of \
+In[24]:=",ExpressionUUID->"abad5faa-a6c9-46a2-aac2-266d9c9819e4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Iterative Formula = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"-", "1"}], ")"}], 
+      RowBox[{"2", "/", "3"}]], " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", 
+        RowBox[{"9", " ", "x"}]}], ")"}], 
+      RowBox[{"1", "/", "3"}]]}], "}"}]}],
+  SequenceForm[
+  "Iterative Formula = ", {(-1)^Rational[2, 3] (-1 + 9 $CellContext`x)^
+     Rational[1, 3]}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8163553920537796`*^9},
+ CellLabel->
+  "(Debug) During evaluation of \
+In[24]:=",ExpressionUUID->"095e0b8d-ff2d-4637-b14d-54f88133ecd2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"The Approximate Root upto to Required accuracy is: \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"-", "3.05404534579125`"}], "+", 
+    RowBox[{"1.7763568394002505`*^-15", " ", "\[ImaginaryI]"}]}]}],
+  SequenceForm["The Approximate Root upto to Required accuracy is: ", 
+   Complex[-3.05404534579125, 1.7763568394002505`*^-15]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.816355392060054*^9},
+ CellLabel->
+  "(Debug) During evaluation of \
+In[24]:=",ExpressionUUID->"a3e256b1-ca41-4523-9b84-e777682c65aa"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+TaggingRules->{"PresenterSettings" -> {"Dialogs" -> {}}},
+Magnification:>1.6 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->FrontEnd`FileName[{"PresenterTools"}, "Default.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 11233, 309, 2071, "Input",ExpressionUUID->"d9c5b160-a94c-4103-8846-c474bf3bfd5b"],
+Cell[CellGroupData[{
+Cell[11838, 335, 428, 11, 36, "Print",ExpressionUUID->"81c6a2d2-e7ac-4df1-8ad2-fc6e595e035b"],
+Cell[12269, 348, 320, 8, 34, "Print",ExpressionUUID->"abad5faa-a6c9-46a2-aac2-266d9c9819e4"],
+Cell[12592, 358, 716, 22, 42, "Print",ExpressionUUID->"095e0b8d-ff2d-4637-b14d-54f88133ecd2"],
+Cell[13311, 382, 572, 13, 36, "Print",ExpressionUUID->"a3e256b1-ca41-4523-9b84-e777682c65aa"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
